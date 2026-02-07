@@ -1,0 +1,137 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{setspace}
+
+\geometry{margin=1in}
+\setstretch{1.15}
+
+\title{\textbf{Topology Engine}}
+\author{Amlakbekalu Achule \\ Columbia University \\ Computer Science \& Statistics}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Overview}
+
+Topology Engine is a computational playground for algebraic topology.
+It models topological spaces, loops, and homotopy using exact algebraic structures rather than numerical approximation.
+
+The project translates standard textbook definitions into executable objects.
+
+\section*{Functionality}
+
+TopoPlay allows the user to:
+\begin{itemize}
+    \item Define simple topological spaces (graphs, surfaces)
+    \item Represent loops as algebraic objects
+    \item Compute homotopy classes via word reduction
+    \item Work with fundamental groups $\pi_1$
+    \item Model basic covering spaces
+    \item Experiment with surfaces of arbitrary genus
+\end{itemize}
+
+All reasoning is definition-driven and algebraic.
+
+\section*{Mathematical Model}
+
+\subsection*{Loops and Homotopy}
+
+A loop based at a point is represented as a word in generators of the fundamental group.
+
+Two loops $\gamma_1$ and $\gamma_2$ are homotopic if and only if their reduced words coincide:
+\[
+\gamma_1 \simeq \gamma_2 \quad \Longleftrightarrow \quad [\gamma_1] = [\gamma_2] \in \pi_1(X).
+\]
+
+Homotopy is implemented via algebraic word reduction.
+
+\subsection*{Free Groups}
+
+For a wedge of $n$ circles,
+\[
+\pi_1\left(\bigvee_{i=1}^{n} S^1\right) \cong F_n,
+\]
+where $F_n$ is the free group on $n$ generators.
+
+TopoPlay implements:
+\begin{itemize}
+    \item generators,
+    \item inverses,
+    \item concatenation,
+    \item reduction by cancellation.
+\end{itemize}
+
+The fundamental reduction rule is:
+\[
+g g^{-1} = e.
+\]
+
+\subsection*{Surfaces}
+
+An orientable surface of genus $g$ is modeled using generators
+\[
+a_1, b_1, \dots, a_g, b_g
+\]
+subject to the defining relation
+\[
+\prod_{i=1}^{g} [a_i, b_i] = e,
+\]
+where the commutator is defined as
+\[
+[a, b] = a b a^{-1} b^{-1}.
+\]
+
+This relation is explicitly constructed and used to test null-homotopy.
+
+\subsection*{Fundamental Group Examples}
+
+\paragraph{Circle}
+\[
+\pi_1(S^1) \cong \mathbb{Z}.
+\]
+
+\paragraph{Wedge of two circles}
+\[
+\pi_1(S^1 \vee S^1) \cong F_2.
+\]
+
+\paragraph{Torus}
+\[
+\pi_1(T^2) = \langle a, b \mid a b a^{-1} b^{-1} = e \rangle.
+\]
+
+\section*{Design Principles}
+
+\begin{itemize}
+    \item Algebra over geometry
+    \item Definitions over heuristics
+    \item Exact reasoning over numerical approximation
+    \item Code mirrors standard topology texts
+\end{itemize}
+
+\section*{Limitations}
+
+\begin{itemize}
+    \item No automatic subgroup enumeration
+    \item Covering spaces are conceptual, not exhaustive
+\end{itemize}
+
+\section*{Motivation}
+
+The goal of this project is to explore how abstract concepts from algebraic topology can be encoded directly into software without reducing them to numerical simulation.
+
+\section*{Possible Extensions}
+
+\begin{itemize}
+    \item van Kampen's theorem
+    \item Classification of surfaces
+    \item Explicit covering space construction
+    \item Simplicial or cubical complexes
+\end{itemize}
+
+\end{document}

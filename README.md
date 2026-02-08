@@ -1,6 +1,6 @@
-# Topology Engine
+# Topological Loop and Homotopy Engine
 
-Topology Engine is a computational playground for basic algebraic topology.  
+This project is a computational playground for basic algebraic topology.  
 It models topological spaces, loops, and homotopy using exact algebraic structures rather than numerical simulation.
 
 The project focuses on turning standard definitions from topology into executable objects.
